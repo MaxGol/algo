@@ -35,3 +35,29 @@ export const compress = (s: string): string => {
 
   return result;
 };
+
+export const anagram = (s1: string, s2: string): boolean => {
+  const count = {};
+  for (let char of s1) {
+    if (!(char in count)) {
+      count[char] = 0;
+    }
+    count[char] += 1;
+  }
+
+  for (let char of s2) {
+    if (char in count) {
+      count[char] -= 1;
+    } else {
+      return false;
+    }
+  }
+
+  for (let char in count) {
+    if (count[char] !== 0) {
+      return false;
+    }
+  }
+
+  return true;
+}

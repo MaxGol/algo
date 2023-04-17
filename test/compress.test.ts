@@ -25,7 +25,7 @@ describe('Uncompress string function', () => {
   ];
 
   testCases.forEach(test => {
-    it.only(`should generate expected result as ${test.result}`, () => {
+    it(`should generate expected result as ${test.result}`, () => {
       const result = compress(test.string);
       expect(result).toEqual(test.result);
     })
