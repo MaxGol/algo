@@ -36,7 +36,7 @@ export const compress = (s: string): string => {
   return result;
 };
 
-export const anagram = (s1: string, s2: string): boolean => {
+export const anagrams = (s1: string, s2: string): boolean => {
   const count = {};
   for (let char of s1) {
     if (!(char in count)) {
@@ -61,3 +61,23 @@ export const anagram = (s1: string, s2: string): boolean => {
 
   return true;
 }
+
+export const mostFrequentChar = (s: string): string => {
+  let best: string = '';
+  const charMap = {};
+  
+  for (let char of s) {
+    if (!(char in charMap)) {
+      charMap[char] = 0;
+    }
+    charMap[char] += 1;
+  }
+  
+  for (let char in charMap) {
+    if (best === '' || charMap[char] > charMap[best]) {
+      best = char;
+    }
+  }
+  
+  return best;
+};

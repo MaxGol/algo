@@ -1,4 +1,4 @@
-import { anagram } from '../src/index';
+import { anagrams } from '../src/index';
 
 describe('Uncompress string function', () => {
   const testCases = [
@@ -26,7 +26,7 @@ describe('Uncompress string function', () => {
 
   testCases.forEach(test => {
     it(`should generate expected result as ${test.result}`, () => {
-      const result = anagram(test.args[0], test.args[1]);
+      const result = anagrams(test.args[0], test.args[1]);
       expect(result).toEqual(test.result);
     })
   })
