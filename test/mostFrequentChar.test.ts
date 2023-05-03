@@ -1,6 +1,6 @@
 import { mostFrequentChar } from '../src/index';
 
-describe('Uncompress string function', () => {
+describe('Most frequent character', () => {
   const testCases = [
     {
       string: 'bookeeper',

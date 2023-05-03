@@ -1,6 +1,6 @@
 import { fiveSort } from '../src/index';
 
-describe.only('Uncompress string function', () => {
+describe.only('Five sort', () => {
   const testCases = [
     {
       args: {

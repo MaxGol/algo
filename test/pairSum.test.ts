@@ -1,6 +1,6 @@
 import { pairSum } from '../src/index';
 
-describe('Uncompress string function', () => {
+describe('Pair sum', () => {
   const testCases = [
     {
       args: {

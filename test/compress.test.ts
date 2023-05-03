@@ -1,6 +1,6 @@
 import { compress } from '../src/index';
 
-describe('Uncompress string function', () => {
+describe('Compress string function', () => {
   const testCases = [
     {
       string: 'ccaaatsss',

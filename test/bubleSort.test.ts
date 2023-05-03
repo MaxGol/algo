@@ -1,6 +1,6 @@
 import { bubbleSort } from '../src/index';
 
-describe('Anagrams', () => {
+describe('Bubble sort', () => {
   const testCases = [
     {
       args: [0, -1, -3, 3, 5, 1, 1],

@@ -1,6 +1,6 @@
 import { pairProduct } from '../src/index';
 
-describe('Uncompress string function', () => {
+describe('Pair product', () => {
   const testCases = [
     {
       args: {
