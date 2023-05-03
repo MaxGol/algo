@@ -1,6 +1,6 @@
 import { anagrams } from '../src/index';
 
-describe('Uncompress string function', () => {
+describe('Anagrams', () => {
   const testCases = [
     {
       args: ['restful', 'fluster'],

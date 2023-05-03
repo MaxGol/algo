@@ -1,3 +1,4 @@
+// Uncompress string from ex. 3a3b3c => aaabbbccc
 export const uncompress = (s: string): string => {
   let result: string[] = [];
   const numbers: string = '0123456789';
@@ -18,6 +19,7 @@ export const uncompress = (s: string): string => {
   return result.join('');
 };
 
+// Compress string from ex. aaabbbccc => 3a3b3c
 export const compress = (s: string): string => {
   let result:string = '';
   let i: number = 0;
@@ -36,6 +38,7 @@ export const compress = (s: string): string => {
   return result;
 };
 
+// Find if strings are anagrams => restful === fluster both words using same letters
 export const anagrams = (s1: string, s2: string): boolean => {
   const count = {};
   for (let char of s1) {
@@ -62,6 +65,7 @@ export const anagrams = (s1: string, s2: string): boolean => {
   return true;
 }
 
+// Count most fre
 export const mostFrequentChar = (s: string): string => {
   let best: string = '';
   const charMap = {};
@@ -81,3 +85,59 @@ export const mostFrequentChar = (s: string): string => {
   
   return best;
 };
+
+export const pairSum = (numbers: number[], targetSum: number): number[] | undefined => {
+  const previousNum = {};
+  for (let i = 0; i < numbers.length; i++) {
+    const num = numbers[i];
+    const complement = targetSum - num;
+    if (complement in previousNum) {
+      return [previousNum[complement], i]
+    };
+    
+    previousNum[num] = i;
+  }
+};
+
+export const pairProduct = (numbers: number[], targetProduct: number): number[] | undefined => {
+  const previousNum = {};
+  
+  for (let i = 0; i < numbers.length; i++) {
+    const currentNum = numbers[i];
+    const complement = targetProduct/currentNum;
+    if (complement in previousNum) return [previousNum[complement], i];
+    
+    previousNum[currentNum] = i;
+  }
+};
+
+export const fiveSort = (nums: number[]): number[] => {
+  let i: number = 0;
+  let j: number = nums.length - 1;
+
+  while(i <= j) {
+    if (nums[j] === 5) {
+      j -= 1;
+    } else if (nums[i] === 5) {
+      [ nums[i], nums[j]] = [nums[j], nums[i]];
+      i += 1;
+    } else {
+      i += 1;
+    }
+  }
+  return nums;
+};
+
+export const bubbleSort = (nums: number[]): number[] => {
+
+  for(let i: number = 0; i < nums.length; i++) {
+    for(let j: number = 0; j < nums.length - i - 1; j++) {
+      if (nums[j] > nums[j + 1]) {
+        const temp = nums[j];
+        nums[j] = nums[j + 1];
+        nums[j + 1] = temp;
+      }
+    }
+  }
+  return nums;
+}
