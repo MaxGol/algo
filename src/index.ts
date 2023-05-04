@@ -1,3 +1,5 @@
+import { Node } from './classes/Node'
+
 // Uncompress string from ex. 3a3b3c => aaabbbccc
 export const uncompress = (s: string): string => {
   let result: string[] = [];
@@ -65,7 +67,7 @@ export const anagrams = (s1: string, s2: string): boolean => {
   return true;
 }
 
-// Count most fre
+// Count most frequnt chars.
 export const mostFrequentChar = (s: string): string => {
   let best: string = '';
   const charMap = {};
@@ -128,6 +130,7 @@ export const fiveSort = (nums: number[]): number[] => {
   return nums;
 };
 
+// Bubble sort
 export const bubbleSort = (nums: number[]): number[] => {
 
   for(let i: number = 0; i < nums.length; i++) {
@@ -141,3 +144,35 @@ export const bubbleSort = (nums: number[]): number[] => {
   }
   return nums;
 }
+
+// array of linked list values
+export const linkedListValues = (head: Node): number[] => {
+  let values: number[]  = [];
+  let current: Node | null = head;
+
+  while (current !== null) {
+    values.push(current.val);
+    current = current.next;
+  }
+
+  return values;
+}
+
+// sum of linked list values
+export const sumListIterative = (head: Node) => {
+  let sum = 0;
+  let current: Node | null = head;
+  
+  while (current !== null) {
+    sum += current.val;
+    current = current.next;
+  }
+  
+  return sum;
+};
+
+// sum of linked list values
+export const sumListRecursive = (head: Node | null): number => {
+  if (head === null) return 0;
+  return head.val + sumListRecursive(head.next);
+};
