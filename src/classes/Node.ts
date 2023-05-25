@@ -1,8 +1,8 @@
-export class Node {
-  next: Node | null = null;
-  val: number;
+export class Node<TypeOfData> {
+  next: Node<TypeOfData> | null = null;
+  val: TypeOfData;
 
-  constructor(val: number) {
+  constructor(val: TypeOfData) {
     this.val = val;
   }
 }

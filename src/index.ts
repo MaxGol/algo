@@ -146,9 +146,9 @@ export const bubbleSort = (nums: number[]): number[] => {
 }
 
 // array of linked list values
-export const linkedListValues = (head: Node): number[] => {
-  let values: number[]  = [];
-  let current: Node | null = head;
+export const linkedListValues = <T>(head: Node<T>): T[] => {
+  let values: T[] = [];
+  let current: Node<T> | null = head;
 
   while (current !== null) {
     values.push(current.val);
@@ -159,9 +159,9 @@ export const linkedListValues = (head: Node): number[] => {
 }
 
 // sum of linked list values
-export const sumListIterative = (head: Node) => {
+export const sumListIterative = (head: Node<number>) => {
   let sum = 0;
-  let current: Node | null = head;
+  let current: Node<number> | null = head;
   
   while (current !== null) {
     sum += current.val;
@@ -172,7 +172,48 @@ export const sumListIterative = (head: Node) => {
 };
 
 // sum of linked list values
-export const sumListRecursive = (head: Node | null): number => {
+export const sumListRecursive = (head: Node<number> | null): number => {
   if (head === null) return 0;
   return head.val + sumListRecursive(head.next);
+};
+
+// reverse linked list
+export const reverseLinkedList = <T>(head: Node<T>): Node<T> => {
+  let prev: Node<T> | null = null;
+  let current: Node<T> | null = head;
+
+  while (current !== null) {
+    const next: Node<T> | null = current.next;
+    current.next = prev;
+    prev = current;
+    current = next;
+  }
+  
+  return prev as Node<T>;
+}
+
+// zipped linked list
+export const zipperLists = <T extends number | string>(head1: Node<T>, head2: Node<T>): Node<T> => {
+  const head: Node<T> = head1;
+  let tail: Node<T> = head;
+  let current1: Node<T> | null = head1.next;
+  let current2: Node<T> | null = head2;
+  let count: number = 0;
+  
+  while (current1 !== null && current2 !== null) {
+    if (count % 2 === 0) { // even
+      tail.next = current2;
+      current2 = current2.next;
+    } else { // odd
+      tail.next = current1;
+      current1 = current1.next;
+    }
+    tail = tail.next;
+    count += 1;
+  }
+  
+  if (current1 !== null) tail.next = current1;
+  if (current2 !== null) tail.next = current2;
+  
+  return head;
 };
