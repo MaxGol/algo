@@ -217,3 +217,27 @@ export const zipperLists = <T extends number | string>(head1: Node<T>, head2: No
   
   return head;
 };
+
+export const swapPairs = (head: Node<number>) => {
+  let dummy: Node<number> = {
+    val: 0,
+    next: null
+  }
+  dummy.next = head;
+  let previous: Node<number> = dummy;
+  let current: Node<number> | null = dummy.next;
+
+  while (current !== null && current.next !== null) {
+    let next_pair = current.next.next;
+    let second = current.next;
+    
+    second.next = current;
+    current.next = next_pair;
+    previous.next = second;
+
+    previous = current;
+    current = next_pair
+  }
+
+  return dummy.next;
+};

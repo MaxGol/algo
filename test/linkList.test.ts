@@ -1,4 +1,4 @@
-import { linkedListValues, sumListIterative, sumListRecursive, reverseLinkedList, zipperLists } from '../src/index';
+import { linkedListValues, sumListIterative, sumListRecursive, reverseLinkedList, zipperLists, swapPairs } from '../src/index';
 import { Node } from '../src/classes/Node';
 
 const a = new Node(11);
@@ -67,5 +67,22 @@ describe('zipped linked list in place', () => {
     const zipped = zipperLists<number | string>(zipA, zipX);
     const result = linkedListValues<number | string>(zipped)
       expect(result).toEqual(['A', 1, 'B', 2, 'C', 3]);
+  })
+})
+
+describe('swap pairs linked list in place', () => {
+  const zipA = new Node(1);
+  const zipB = new Node(2);
+  const zipC = new Node(3);
+  const zipD = new Node(4);
+
+  zipA.next = zipB;
+  zipB.next = zipC;
+  zipC.next = zipD;
+
+  it(`should generate a linked list with swaped nodes`, () => {
+    const zipped = swapPairs(zipA);
+    const result = linkedListValues<number>(zipped)
+    expect(result).toEqual([2, 1, 4, 3]);
   })
 })
