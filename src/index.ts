@@ -1,5 +1,16 @@
 import { Node } from './classes/Node'
 
+export const rotateLeftArray = (arr: number[], times: number): number[] => {
+  const possibleTimes = times % arr.length;
+  console.log('possibleTimes: ', possibleTimes);
+  console.log('times: ', times);
+  for (let i: number = 0; i < possibleTimes; i++) {
+    const firstEl: number = arr.shift()!;
+    arr.push(firstEl);
+  }
+  return arr;
+}
+
 // Uncompress string from ex. 3a3b3c => aaabbbccc
 export const uncompress = (s: string): string => {
   let result: string[] = [];
@@ -218,7 +229,7 @@ export const zipperLists = <T extends number | string>(head1: Node<T>, head2: No
   return head;
 };
 
-export const swapPairs = (head: Node<number>) => {
+export const swapPairs = (head: Node<number>): Node<number> => {
   let dummy: Node<number> = {
     val: 0,
     next: null
@@ -240,4 +251,79 @@ export const swapPairs = (head: Node<number>) => {
   }
 
   return dummy.next;
+};
+
+export const mergeLists = (head1: Node<number>, head2: Node<number>): Node<number> | null => {
+  const dummyHead: Node<number> = {
+    val: 0, 
+    next: null
+  };
+
+  let tail: Node<number> = dummyHead;
+  let current1: Node<number> | null = head1;
+  let current2: Node<number> | null = head2;
+
+  while (current1 !== null && current2 !== null) {
+    if (current1.val < current2.val) {
+      tail.next = current1;
+      current1 = current1.next;
+    } else {
+      tail.next = current2;
+      current2 = current2.next;
+    }
+  }
+
+  if (current1 !== null) tail.next = current1;
+  if (current1 !== null) tail.next = current1;
+
+  return dummyHead.next;
+}
+
+export const rotateRight = function(head, k) {
+  if (!head || !head.next || k === 0) {
+    return head;
+  }
+
+  let count = 1;
+  let current = head;
+
+  // Count the number of nodes in the list
+  while (current.next) {
+    current = current.next;
+    count++;
+  }
+
+  console.log('count:', count);
+
+  // Calculate the actual number of rotations needed
+  const actualRotations = k % count;
+
+  console.log('actualRotations', actualRotations);
+
+  if (actualRotations === 0) {
+    return head;
+  }
+
+  // Find the new tail of the rotated list
+  let newTail = head;
+  for (let i = 0; i < count - actualRotations - 1; i++) {
+    newTail = newTail.next;
+  }
+
+  console.log('newTail-1', newTail);
+
+  // Set the new head of the rotated list
+  const newHead = newTail.next;
+
+  console.log('newHead', newHead);
+
+  // Set the next node of the new tail
+  newTail.next = null;
+
+  console.log('newTail-2', newTail)
+
+  // Set the next node of the current tail to the original head
+  current.next = head;
+
+  return newHead;
 };

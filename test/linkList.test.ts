@@ -1,4 +1,12 @@
-import { linkedListValues, sumListIterative, sumListRecursive, reverseLinkedList, zipperLists, swapPairs } from '../src/index';
+import { 
+  linkedListValues, 
+  sumListIterative, 
+  sumListRecursive, 
+  reverseLinkedList, 
+  zipperLists, 
+  swapPairs,
+  rotateRight
+} from '../src/index';
 import { Node } from '../src/classes/Node';
 
 const a = new Node(11);
@@ -85,4 +93,21 @@ describe('swap pairs linked list in place', () => {
     const result = linkedListValues<number>(zipped)
     expect(result).toEqual([2, 1, 4, 3]);
   })
+})
+
+describe.only('Rotate linked list to the right', () => {
+  const zipA = new Node(1);
+  const zipB = new Node(2);
+  const zipC = new Node(3);
+  const zipD = new Node(4);
+
+  zipA.next = zipB;
+  zipB.next = zipC;
+  zipC.next = zipD;
+
+  it('should rotate linked list', () => {
+    const rotated = rotateRight(zipA, 2);
+    const result = linkedListValues<number>(rotated)
+    expect(result).toEqual([3,4,1,2]);
+  });
 })
