@@ -95,7 +95,7 @@ describe('swap pairs linked list in place', () => {
   })
 })
 
-describe.only('Rotate linked list to the right', () => {
+describe('Rotate linked list to the right', () => {
   const zipA = new Node(1);
   const zipB = new Node(2);
   const zipC = new Node(3);
@@ -107,7 +107,8 @@ describe.only('Rotate linked list to the right', () => {
 
   it('should rotate linked list', () => {
     const rotated = rotateRight(zipA, 2);
-    const result = linkedListValues<number>(rotated)
+    const result = linkedListValues<number>(rotated!)
+    console.log('======>', result);
     expect(result).toEqual([3,4,1,2]);
   });
 })

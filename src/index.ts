@@ -279,51 +279,32 @@ export const mergeLists = (head1: Node<number>, head2: Node<number>): Node<numbe
   return dummyHead.next;
 }
 
-export const rotateRight = function(head, k) {
+export const rotateRight = (head: Node<number> | null, k: number): Node<number> | null => {
   if (!head || !head.next || k === 0) {
     return head;
   }
 
-  let count = 1;
-  let current = head;
+  let current: Node<number> | null = head;
+  let length = 1;
 
-  // Count the number of nodes in the list
-  while (current.next) {
+  while(current.next !== null) {
     current = current.next;
-    count++;
+    length++;
   }
 
-  console.log('count:', count);
-
-  // Calculate the actual number of rotations needed
-  const actualRotations = k % count;
-
-  console.log('actualRotations', actualRotations);
-
-  if (actualRotations === 0) {
-    return head;
-  }
-
-  // Find the new tail of the rotated list
-  let newTail = head;
-  for (let i = 0; i < count - actualRotations - 1; i++) {
-    newTail = newTail.next;
-  }
-
-  console.log('newTail-1', newTail);
-
-  // Set the new head of the rotated list
-  const newHead = newTail.next;
-
-  console.log('newHead', newHead);
-
-  // Set the next node of the new tail
-  newTail.next = null;
-
-  console.log('newTail-2', newTail)
-
-  // Set the next node of the current tail to the original head
   current.next = head;
+
+  k = length - (k % length);
+
+  while(k > 0) {
+    if(current !== null) {
+      current = current.next;
+    }
+    k--;
+  }
+
+  let newHead: Node<number> | null = current!.next;
+  current!.next = null;
 
   return newHead;
 };
