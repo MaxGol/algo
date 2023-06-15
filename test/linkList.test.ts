@@ -108,7 +108,6 @@ describe('Rotate linked list to the right', () => {
   it('should rotate linked list', () => {
     const rotated = rotateRight(zipA, 2);
     const result = linkedListValues<number>(rotated!)
-    console.log('======>', result);
     expect(result).toEqual([3,4,1,2]);
   });
 })

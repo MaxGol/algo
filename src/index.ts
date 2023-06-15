@@ -1,9 +1,9 @@
 import { Node } from './classes/Node'
 
+/* ---------- ARRAYS ---------- */
+
 export const rotateLeftArray = (arr: number[], times: number): number[] => {
   const possibleTimes = times % arr.length;
-  console.log('possibleTimes: ', possibleTimes);
-  console.log('times: ', times);
   for (let i: number = 0; i < possibleTimes; i++) {
     const firstEl: number = arr.shift()!;
     arr.push(firstEl);
@@ -155,6 +155,8 @@ export const bubbleSort = (nums: number[]): number[] => {
   }
   return nums;
 }
+
+/* ---------- LINKED LIST ---------- */
 
 // array of linked list values
 export const linkedListValues = <T>(head: Node<T>): T[] => {
