@@ -310,3 +310,33 @@ export const rotateRight = (head: Node<number> | null, k: number): Node<number> 
 
   return newHead;
 };
+
+export const createLinkedList = (values, i = 0) => {
+  if (i === values.length) return null;
+  let head = new Node(values[i]);
+  head.next = createLinkedList(values, i + 1);
+  return head;
+};
+
+export const addLists = (head1, head2) => {
+  let curr1 = head1;
+  let curr2 = head2;
+  let dummyNode = new Node(0);
+  let tail = dummyNode;
+  let curry = 0;
+  
+  while(curr1 !== null || curr2 !== null || curry !== 0) {
+    const val1 = curr1 === null ? 0 : curr1.val;
+    const val2 = curr2 === null ? 0 : curr2.val;
+    const sum = val1 + val2 + curry;
+    curry = sum > 9 ? 1 : 0;
+    const digit = sum % 10;
+    
+    tail.next = new Node(digit);
+    tail = tail.next;
+    if (curr1 !== null) curr1 = curr1.next;
+    if (curr2 !== null) curr2 = curr2.next;
+  }
+  
+  return dummyNode.next;
+};
